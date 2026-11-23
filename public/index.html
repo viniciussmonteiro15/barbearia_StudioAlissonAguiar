@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211915">
+  <meta name="description" content="Agende seu horário no Studio Alison Aguiar.">
+  <title>Studio Alison Aguiar | Agendamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-spacer" aria-hidden="true"></div>
+    <a class="logo-wrapper" href="#inicio" aria-label="Studio Alison Aguiar - início">
+      <img src="assets/studio-logo.png" alt="Logo Studio Alison Aguiar">
+    </a>
+    <nav><a class="admin-link" href="admin.html">Área do barbeiro</a></nav>
+  </header>
+  <main class="container" id="inicio">
+    <section class="intro">
+      <p class="eyebrow">SEU PRÓXIMO CORTE COMEÇA AQUI</p>
+      <h2>Um atendimento<br><span>do seu jeito.</span></h2>
+      <p>Converse com nosso assistente e agende seu horário de maneira simples e rápida.</p>
+    </section>
+    <section class="chat-container" aria-label="Chat de agendamento">
+      <header class="chat-header">
+        <div class="chat-avatar"><img src="assets/studio-logo.png" alt="Logo Studio Alison Aguiar"></div>
+        <div><h2>Studio Alison Aguiar</h2><p><span class="online-dot"></span> Assistente de agendamento</p></div>
+      </header>
+      <div id="chatMessages" class="chat-messages" aria-live="polite" aria-relevant="additions"></div>
+      <div id="chatControls" class="chat-controls"></div>
+      <div id="chatLoading" class="chat-loading hidden">Digitando...</div>
+    </section>
+    <footer class="chat-footer"><p>© <span id="year"></span> Studio Alison Aguiar</p><p>Seu estilo, nossa dedicação.</p></footer>
+  </main>
+</body>
+</html>
