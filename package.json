@@ -1,19 +1,17 @@
-
 {
-  "name": "studio-alison-aguiar",
-  "version": "2.0.0",
-  "description": "Sistema de agendamento para barbearia com API, banco SQLite e painel administrativo",
+  "name": "studio-alison-aguiar-backend",
+  "version": "3.1.0",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=18"
   },
   "dependencies": {
-    "better-sqlite3": "^12.0.0",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mysql2": "^3.11.0"
   }
 }

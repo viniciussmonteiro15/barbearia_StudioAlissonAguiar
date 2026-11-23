@@ -1,49 +1,29 @@
-# Studio Alison Aguiar — versão 2 (backend + banco de dados)
+# Backend + SQL — Studio Alison Aguiar
 
-## Requisitos
-- Node.js 18 ou superior
-- VS Code (opcional)
+Substitui `server.js`, `package.json` e `.env.example` do repositório. A pasta `public/` (HTML/CSS/JS) **não foi alterada**; a API mantém o mesmo contrato.
 
-## Como instalar e executar
-1. Extraia a pasta do projeto.
-2. Abra a pasta no VS Code.
-3. Copie `.env.example` para um arquivo chamado `.env`.
-4. Edite `ADMIN_PASSWORD` no `.env` e coloque uma senha forte.
-5. No terminal, dentro da pasta do projeto, execute:
-   ```bash
-   npm install
-   npm start
-   ```
-6. Abra `http://localhost:3000`.
-7. Painel do barbeiro: `http://localhost:3000/admin.html`.
+## Rodar
+```
+npm install
+cp .env.example .env     # defina ADMIN_PASSWORD
+npm start
+```
+Site: http://localhost:3000 · Painel: http://localhost:3000/admin.html
 
-O banco SQLite `data/barbearia.sqlite` será criado automaticamente na primeira execução.
+O banco `data/barbearia.sqlite` é criado a partir de `db/schema.sql` na primeira execução.
 
-## Funcionalidades incluídas
-- Layout responsivo, cores preto/marrom e fonte DM Sans + Playfair Display.
-- Cadastro de nome e celular com validação.
-- Lista de serviços e total calculado no servidor.
-- Consulta de horários disponíveis por data.
-- Não oferece horários já reservados; o servidor valida de novo ao salvar.
-- Persistência dos agendamentos em SQLite.
-- Painel administrativo protegido por senha via variável de ambiente.
-- Filtro de agenda por data, cancelamento/conclusão e status de pagamento.
-- Configuração de dias de funcionamento, abertura/fechamento, intervalo e datas fechadas.
-- Botão que monta um resumo para enviar pelo WhatsApp, se `BARBERSHOP_PHONE` estiver configurado.
-- Dados pessoais não são exibidos publicamente; a API administrativa exige senha.
+## Tabelas
+`services`, `settings`, `closed_dates`, `appointments`, `appointment_services`.
 
-## Limitações importantes / antes de publicar
-- **Pix ainda é demonstrativo.** O QR Code mostrado não é um payload Pix válido e não recebe dinheiro. Para cobrança real, integre um provedor de pagamentos no backend, crie uma cobrança por agendamento e confirme o pagamento por webhook autenticado. Nunca confie em confirmação enviada pelo navegador.
-- O link do WhatsApp abre o aplicativo com uma mensagem pronta; não envia automaticamente. Para envio automático, é necessária integração oficial com WhatsApp Business Platform e credenciais.
-- A senha administrativa simples por variável de ambiente é uma base para estudo. Antes de publicar na internet, use autenticação robusta, HTTPS, limitação de tentativas, sessões seguras e proteção contra CSRF conforme a arquitetura escolhida.
-- O SQLite é adequado para uma barbearia pequena/ protótipo. Para escala ou múltiplas instâncias de servidor, considere PostgreSQL.
-- O horário é tratado em horário local do servidor. Configure o servidor para o fuso correto.
-- Os serviços têm duração estimada fixa de 30 minutos nesta base. Para serviços combinados que ocupam mais tempo, implemente bloqueio por duração e intervalos sobrepostos.
-- Adicione política de privacidade, retenção segura e controles de acesso em conformidade com a LGPD antes de usar dados reais.
-- Faça backup periódico do arquivo `data/barbearia.sqlite`.
+## Correções em relação à versão original
+- `UNIQUE(date, time, status)` impedia cancelar dois agendamentos do mesmo horário; agora é um índice único parcial (só vale para agendamentos não cancelados).
+- Serviços combinados bloqueiam a duração total (ex.: corte + barba = 60 min), sem sobreposição.
+- Reserva feita dentro de uma transação imediata (sem corrida entre dois clientes).
+- Serviços e preços vêm do banco; o preço fica congelado no agendamento.
+- Senha admin comparada em tempo constante + limite de tentativas; cabeçalhos básicos de segurança.
+- Corrigido o regex `\\D` em `/api/settings/public`.
+- Removida do `.env.example` a senha real; o painel exige `ADMIN_PASSWORD`.
 
-## Próximas etapas sugeridas
-1. Escolher um provedor de Pix real e configurar credenciais secretas no servidor.
-2. Configurar o WhatsApp Business, se quiser confirmações automáticas.
-3. Publicar em hospedagem com HTTPS e banco de dados gerenciado.
-4. Testar conflitos de horário, cancelamentos, datas fechadas e experiência em celular.
+## Observações
+- Pix continua em modo demonstração (sem cobrança real).
+- `/api/slots` aceita `?serviceIds=a,b` opcional; o front atual não o envia, então usa 30 min até ele passar a enviar. Para o cálculo por duração total valer no site, o `app.js` precisaria enviar esse parâmetro (você pediu para não mexer no front).

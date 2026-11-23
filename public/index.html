@@ -8,8 +8,9 @@
   <title>Studio Alison Aguiar | Agendamento</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
   <script src="/app.js" defer></script>
 </head>
@@ -17,9 +18,9 @@
   <header class="topbar">
     <div class="topbar-spacer" aria-hidden="true"></div>
     <a class="logo-wrapper" href="#inicio" aria-label="Studio Alison Aguiar - início">
-      <img src="assets/studio-logo.png" alt="Logo Studio Alison Aguiar">
+      <img src="img/studio-logo.png" alt="Logo Studio Alison Aguiar">
     </a>
-    <nav><a class="admin-link" href="admin.html">Área do barbeiro</a></nav>
+    <nav><a class="admin-link" href="admin/admin.html">Área do barbeiro</a></nav>
   </header>
   <main class="container" id="inicio">
     <section class="intro">
@@ -29,14 +30,14 @@
     </section>
     <section class="chat-container" aria-label="Chat de agendamento">
       <header class="chat-header">
-        <div class="chat-avatar"><img src="assets/studio-logo.png" alt="Logo Studio Alison Aguiar"></div>
+        <div class="chat-avatar"><img src="img/studio-logo.png" alt="Logo Studio Alison Aguiar"></div>
         <div><h2>Studio Alison Aguiar</h2><p><span class="online-dot"></span> Assistente de agendamento</p></div>
       </header>
       <div id="chatMessages" class="chat-messages" aria-live="polite" aria-relevant="additions"></div>
       <div id="chatControls" class="chat-controls"></div>
       <div id="chatLoading" class="chat-loading hidden">Digitando...</div>
     </section>
-    <footer class="chat-footer"><p>© <span id="year"></span> Studio Alison Aguiar</p><p>Seu estilo, nossa dedicação.</p></footer>
+    <footer class="chat-footer"><p>© <span id="year"></span> Studio Alison Aguiar</p><p>Atendendo bem desde 2017!</p></footer>
   </main>
 </body>
 </html>

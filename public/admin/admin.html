@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Painel do Barbeiro | Alison Aguiar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CORRIGIDO: CSS está na pasta public/style -->
+    <link rel="stylesheet" href="/style/style.css">
+
+    <!-- JS está dentro de public/admin -->
+    <script src="/admin/admin.js" defer></script>
+</head>
+<body>
+
+    <section id="loginPanel">
+        <input type="password" id="password" placeholder="Senha">
+        <button id="login">Entrar</button>
+        <p id="loginError"></p>
+    </section>
+
+    <main id="dashboard" class="hidden">
+        <input type="date" id="filterDate">
+        <button id="loadAppointments">Filtrar</button>
+        <button id="showAll">Ver todos</button>
+        <p id="adminError"></p>
+        <div id="appointments"></div>
+
+        <div id="days">
+            <label><input type="checkbox" value="0"> Dom</label>
+            <label><input type="checkbox" value="1"> Seg</label>
+            <label><input type="checkbox" value="2"> Ter</label>
+            <label><input type="checkbox" value="3"> Qua</label>
+            <label><input type="checkbox" value="4"> Qui</label>
+            <label><input type="checkbox" value="5"> Sex</label>
+            <label><input type="checkbox" value="6"> Sáb</label>
+        </div>
+
+        <input type="time" id="openTime">
+        <input type="time" id="closeTime">
+        <select id="slotMinutes">
+            <option value="30">30</option>
+            <option value="45">45</option>
+            <option value="60">60</option>
+        </select>
+        <input type="text" id="closedDates" placeholder="2026-12-25, 2026-12-31">
+        <button id="saveSettings">Salvar</button>
+        <p id="settingsMessage"></p>
+    </main>
+
+</body>
+</html>
