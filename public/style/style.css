@@ -718,3 +718,129 @@ button {
         gap: 0;
     }
 }
+
+/* =====================================
+   Painel administrativo — complementos
+   (cartões de agendamento, selos, mensagens)
+   ===================================== */
+.admin-page input[type="text"] {
+    width: 100%;
+    min-height: 48px;
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    outline: none;
+    margin-bottom: 8px;
+}
+.admin-page #dashboard label {
+    display: block;
+    margin: 0 0 8px;
+    font-size: .9rem;
+    font-weight: 600;
+}
+.admin-page #dashboard .days label {
+    display: inline-flex;
+    margin: 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+.admin-page #dashboard .days input {
+    accent-color: var(--primary);
+}
+.admin-page .button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none;
+}
+.admin-page .error {
+    min-height: 1.2em;
+    margin: 6px 0 12px;
+    color: #b23a31;
+    font-size: .88rem;
+}
+.admin-page .helper.success {
+    color: var(--success);
+    font-weight: 600;
+}
+.admin-page .helper.error {
+    color: #b23a31;
+    font-weight: 600;
+}
+
+.appointment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-height: 640px;
+    overflow-y: auto;
+    padding: 2px 4px 2px 0;
+}
+.appointment-list .empty {
+    padding: 24px;
+    color: var(--muted);
+    text-align: center;
+    background: #faf7f3;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+}
+.appointment-card {
+    padding: 18px;
+    background: #faf7f3;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 14px;
+}
+.appointment-card.status-completed { border-left-color: var(--success); }
+.appointment-card.status-cancelled { border-left-color: #b23a31; opacity: .75; }
+.appointment-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+}
+.appointment-card p {
+    margin-bottom: 6px;
+    overflow-wrap: anywhere;
+}
+.appointment-services {
+    color: var(--muted);
+    font-size: .92rem;
+}
+.appointment-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0 4px !important;
+}
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: .75rem;
+    font-weight: 700;
+    background: #f0e8e1;
+    color: var(--primary);
+}
+.badge-booked    { background: #e9d8c5; color: var(--primary); }
+.badge-completed { background: #edf7ef; color: var(--success); }
+.badge-cancelled { background: #fbe9e7; color: #b23a31; }
+.badge-paid      { background: #edf7ef; color: var(--success); }
+.badge-pending   { background: #fff4d9; color: #75561b; }
+
+.admin-page .appointment-card .button-row {
+    margin: 12px 0 0;
+}
+.admin-page .appointment-card .button {
+    min-height: 40px;
+    padding: 8px 14px;
+    font-size: .85rem;
+}
+
+@media (max-width: 600px) {
+    .appointment-head { flex-direction: column; gap: 2px; }
+    .admin-page .appointment-card .button { flex: 1 1 100%; }
+    .admin-page #dashboard .button-row .button { flex: 1 1 auto; }
+}
