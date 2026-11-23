@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#211915">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Painel do Barbeiro | Studio Alison Aguiar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="/admin/admin.js" defer></script>
+</head>
+<body class="admin-page">
+
+    <header class="topbar admin-topbar">
+        <div class="topbar-spacer" aria-hidden="true"></div>
+        <a class="logo-wrapper admin-logo" href="/" aria-label="Studio Alison Aguiar - site">
+            <img src="/img/studio-logo.png" alt="Logo Studio Alison Aguiar">
+        </a>
+        <nav class="admin-navigation" aria-label="Navegação principal">
+            <button type="button" id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="adminNavLinks" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div id="adminNavLinks" class="admin-nav-links">
+                <a href="#appointmentsSection" class="admin-link">Agendamentos</a>
+                <a href="#settingsSection" class="admin-link">Funcionamento</a>
+                <a href="/" class="admin-link">Voltar ao site</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container admin-container">
+        <section class="intro admin-intro">
+            <p class="eyebrow">ÁREA DO BARBEIRO</p>
+            <h2>Painel de <span>agendamentos.</span></h2>
+            <p>Acompanhe sua agenda e defina os horários de funcionamento.</p>
+        </section>
+
+        <section id="loginPanel" class="admin-login-panel" aria-labelledby="loginTitle">
+            <div class="admin-panel-icon">
+                <img src="/img/studio-logo.png" alt="">
+            </div>
+            <h3 id="loginTitle">Acesso restrito</h3>
+            <p class="admin-panel-description">Digite a senha do painel para continuar.</p>
+
+            <label for="password">Senha</label>
+            <input type="password" id="password" autocomplete="current-password" placeholder="Sua senha">
+
+            <button type="button" id="login" class="button primary full">Entrar</button>
+            <p id="loginError" class="error" role="alert" aria-live="polite"></p>
+        </section>
+
+        <section id="dashboard" class="hidden" aria-label="Painel administrativo">
+            <section id="appointmentsSection" class="admin-section" aria-labelledby="appointmentsTitle">
+                <div class="panel-heading">
+                    <span class="number" aria-hidden="true">1</span>
+                    <div>
+                        <h3 id="appointmentsTitle">Agendamentos</h3>
+                        <p>Consulte os atendimentos, atualize os pagamentos e gerencie os status.</p>
+                    </div>
+                </div>
+
+                <div class="filter-panel">
+                    <div class="filter-field">
+                        <label for="filterDate">Filtrar por data</label>
+                        <input type="date" id="filterDate">
+                    </div>
+                    <div class="button-row filter-actions">
+                        <button type="button" id="loadAppointments" class="button primary">Aplicar filtro</button>
+                        <button type="button" id="showAll" class="button secondary">Ver todos</button>
+                        <button type="button" id="logout" class="button text-button">Sair</button>
+                    </div>
+                </div>
+
+                <p id="adminError" class="error" role="alert" aria-live="polite"></p>
+                <p id="adminFeedback" class="feedback" role="status" aria-live="polite"></p>
+
+                <div class="appointment-tabs" role="tablist" aria-label="Status dos agendamentos">
+                    <button type="button" id="activeTab" class="appointment-tab is-active" role="tab" aria-selected="true" aria-controls="appointments" data-tab="active">
+                        Em andamento <span id="activeCount" class="tab-count">0</span>
+                    </button>
+                    <button type="button" id="closedTab" class="appointment-tab" role="tab" aria-selected="false" aria-controls="appointments" data-tab="closed">
+                        Concluídos e encerrados <span id="closedCount" class="tab-count">0</span>
+                    </button>
+                </div>
+                <div id="appointments" class="appointment-list" role="tabpanel" aria-labelledby="activeTab" aria-live="polite"></div>
+            </section>
+
+            <hr>
+
+            <section id="settingsSection" class="admin-section" aria-labelledby="settingsTitle">
+                <div class="panel-heading">
+                    <span class="number" aria-hidden="true">2</span>
+                    <div>
+                        <h3 id="settingsTitle">Funcionamento</h3>
+                        <p>Defina os dias, horários e datas em que o estúdio estará fechado.</p>
+                    </div>
+                </div>
+
+                <h3>Dias de atendimento</h3>
+                <div id="days" class="days">
+                    <label><input type="checkbox" value="0"> Dom</label>
+                    <label><input type="checkbox" value="1"> Seg</label>
+                    <label><input type="checkbox" value="2"> Ter</label>
+                    <label><input type="checkbox" value="3"> Qua</label>
+                    <label><input type="checkbox" value="4"> Qui</label>
+                    <label><input type="checkbox" value="5"> Sex</label>
+                    <label><input type="checkbox" value="6"> Sáb</label>
+                </div>
+
+                <div class="two-cols">
+                    <div>
+                        <label for="openTime">Abertura</label>
+                        <input type="time" id="openTime">
+                    </div>
+                    <div>
+                        <label for="closeTime">Fechamento</label>
+                        <input type="time" id="closeTime">
+                    </div>
+                </div>
+
+                <label for="slotMinutes">Intervalo entre horários</label>
+                <select id="slotMinutes">
+                    <option value="15">15 minutos</option>
+                    <option value="30">30 minutos</option>
+                    <option value="45">45 minutos</option>
+                    <option value="60">60 minutos</option>
+                    <option value="90">90 minutos</option>
+                </select>
+
+                <label for="closedDates">Datas fechadas</label>
+                <input type="text" id="closedDates" placeholder="2026-12-25, 2026-12-31" aria-describedby="closedDatesHelp">
+                <p id="closedDatesHelp" class="helper">Use o formato AAAA-MM-DD, separando as datas por vírgula.</p>
+
+                <div class="button-row">
+                    <button type="button" id="saveSettings" class="button primary">Salvar funcionamento</button>
+                </div>
+                <p id="settingsMessage" class="helper" role="status" aria-live="polite"></p>
+            </section>
+        </section>
+    </main>
+
+    <dialog id="confirmDialog" class="confirm-dialog" aria-labelledby="confirmTitle" aria-describedby="confirmMessage confirmDetails">
+        <div class="confirm-dialog-content">
+            <span class="confirm-icon" aria-hidden="true">!</span>
+            <p class="confirm-eyebrow">CONFIRMAÇÃO DE AÇÃO</p>
+            <h2 id="confirmTitle">Confirmar ação</h2>
+            <p id="confirmMessage" class="confirm-message"></p>
+            <p id="confirmDetails" class="confirm-details"></p>
+            <div class="confirm-actions">
+                <button type="button" id="cancelConfirm" class="button secondary">Voltar</button>
+                <button type="button" id="acceptConfirm" class="button danger">Confirmar</button>
+            </div>
+        </div>
+    </dialog>
+
+    <footer class="admin-footer">
+        <p>© <span id="year"></span> Studio Alison Aguiar</p>
+    </footer>
+</body>
+</html>
